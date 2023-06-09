@@ -1,5 +1,20 @@
+@keyframes fade-out{
+  0%{
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8) ;
+  }
+  100%{
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) ;
+  }
+}
+
 /** General */
-main{
+body{
+  overflow: hidden;
+}
+
+.first-group{
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -28,4 +43,48 @@ main{
   font-size: 3.5rem;
   background-color: lightslategray;
   padding: 2rem;
+}
+
+/* FORM */
+#form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  gap: 1.2rem;
+}
+#score{
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: lightcoral;
+  border-radius: 20px;
+  width: 900px;
+  height: 500px;
+  line-height: 500px;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  animation: fade-out 0.4s linear;
+  user-select: none;
+
+  display: flex;
+  flex-direction: column;
+}
+
+#score button{
+  padding: 50px;
+  position: relative;
+  bottom: 125px;
+}
+
+.overflow{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
 }

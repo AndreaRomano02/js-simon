@@ -3,7 +3,12 @@ console.log("JS OK");
 //# Recupero gli elemtni dal DOM
 const countdownElement = document.getElementById("countdown");
 const gridElement = document.getElementById("number-grid");
-const mainPage = document.querySelector("main");
+const firstPage = document.getElementById("first-page");
+const form = document.getElementById("form");
+const userNumberElement = form.querySelectorAll("input");
+const submit = document.getElementById("submit");
+const scoreElement = document.getElementById("score");
+const overflow = document.getElementById("overflow");
 
 //# Variabili
 const number = [];
@@ -14,7 +19,7 @@ let userNumber = [];
 let score = 0;
 
 //* Imposto il valore da cui deve partire il countDown (30s)
-let countDown = 3;
+let countDown = 30;
 countdownElement.innerText = countDown;
 
 //# Funzioni
@@ -50,24 +55,37 @@ const timer = setInterval(() => {
     //* Interrompo l'intervallo
     clearInterval(timer);
 
-    //* Svuoto la pagina
-    mainPage.innerHTML = "";
+    //* Svuoto la pagina e mostro il Form
+    firstPage.classList.add("d-none");
+    form.classList.remove("d-none");
 
-    while (userNumber.length < number.length) {
-      //* Chiedo all'utente i numeri che si ricorda
-      userNumber.push(
-        parseInt(
-          prompt(`Quali erano i numeri che erano scritti nella pagina
-        PS: Sono compresi tra ${min} e ${max}`)
-        )
-      );
-    }
+    //# Attendo il click del form
+    form.addEventListener("submit", (event) => {
+      //? Tolgo la funzione di default al FORM
+      event.preventDefault();
 
-    //# Scorro l'Array dei numeri dati dall'utente
-    //# E controllo se sono uguali a quelli scelti casualmente prima
-    for (let i = 0; i < userNumber.length; i++) if (number.includes(userNumber[i])) score++;
+      //# Recupero i valori degli Input dati dall'utente
+      for (let i = 0; i < userNumberElement.length; i++) {
+        userNumber.push(parseInt(userNumberElement[i].value));
+      }
 
-    //# Stampo quanti punti ha ottenuto l'utente
-    alert(`Il tuo punteggio è di ${score}`);
+      //# Scorro l'Array dei numeri dati dall'utente
+      //# E controllo se sono uguali a quelli scelti casualmente prima
+      for (let i = 0; i < userNumber.length; i++) if (number.includes(userNumber[i])) score++;
+
+      //# Stampo quanti punti ha ottenuto l'utente
+      scoreElement.classList.remove("d-none");
+      overflow.classList.remove("d-none");
+      scoreElement.innerHTML = `
+      <span>Il tuo punteggio è di ${score}</span>
+      <button type="button" class="btn btn-danger">Riprova</button>
+      `;
+
+      //# Attendo il click del bottone 'Riprova' e ricarico la pagina
+      const buttonRetry = document.querySelector("#score button");
+      buttonRetry.addEventListener("click", () => {
+        window.location.reload();
+      });
+    });
   }
 }, 1000);

@@ -25,3 +25,15 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
   - **SE** i numeri che ha inserito l'utente sono presenti nell'Array.
     - Incremento una variabile del punteggio.
   - Stampo la quanto punteggio ha totalizzato.
+
+## BONUS
+
+Facciamo inserire i numeri all'utente tramite 5 campi di input invece che via prompt.
+
+## STEPS
+
+- Preparo l'HTML.
+- Recupero gli elementi dal DOM.
+- All'invio del form:
+  - Raccolgo i valori dati dall'utente
+  - Ed eseguo la logica del controllo per il punteggio.
