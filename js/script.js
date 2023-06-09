@@ -16,8 +16,9 @@ const min = 1;
 const max = 100;
 let randomNumber;
 let userNumber = [];
+let rightNumber = [];
 let score = 0;
-let correctNumber = "";
+let correctNumber = [];
 
 //* Imposto il valore da cui deve partire il countDown (30s)
 let countDown = 1;
@@ -106,14 +107,13 @@ const timer = setInterval(() => {
       //# Scorro l'Array dei numeri dati dall'utente
       //# E controllo se sono uguali a quelli scelti casualmente prima
       for (let i = 0; i < userNumber.length; i++) {
-        if (number.includes(userNumber[i])) {
-          correctNumber += number[i] + " ";
+        if (number.includes(userNumber[i]) && !correctNumber.includes(userNumber[i])) {
+          correctNumber.push(userNumber[i]);
           score++;
-        } else if (!correctNumber) {
-          correctNumber = "Nessuno";
-        }
+        } else if (!correctNumber.length) correctNumber = "Nessuno";
       }
 
+      console.log(correctNumber, userNumber);
       //# Se hai fatto almeno un punto fai partire i coriandoli
       if (score !== 0) {
         scoreElement.classList.add("bg-success");
