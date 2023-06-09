@@ -20,7 +20,7 @@ let score = 0;
 let correctNumber = "Nessuno";
 
 //* Imposto il valore da cui deve partire il countDown (30s)
-let countDown = 1;
+let countDown = 30;
 countdownElement.innerText = countDown;
 
 //# Funzioni
