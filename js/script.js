@@ -1,5 +1,35 @@
 console.log("JS OK");
 
+//! Coriandoli effetto
+
+function frame() {
+  const end = Date.now() + 15 * 10;
+
+  // go Buckeyes!
+  const colors = ["#bb0000", "#ffffff"];
+  confetti({
+    particleCount: 2,
+    angle: 60,
+    spread: 55,
+    origin: { x: 0 },
+    colors: colors,
+  });
+
+  confetti({
+    particleCount: 2,
+    angle: 120,
+    spread: 55,
+    origin: { x: 1 },
+    colors: colors,
+  });
+
+  if (Date.now() < end) {
+    requestAnimationFrame(frame);
+  }
+}
+
+// ------------------------------
+
 //# Recupero gli elemtni dal DOM
 const countdownElement = document.getElementById("countdown");
 const gridElement = document.getElementById("number-grid");
@@ -17,9 +47,10 @@ const max = 100;
 let randomNumber;
 let userNumber = [];
 let score = 0;
+let correctNumber = "Nessuno";
 
 //* Imposto il valore da cui deve partire il countDown (30s)
-let countDown = 30;
+let countDown = 1;
 countdownElement.innerText = countDown;
 
 //# Funzioni
@@ -71,12 +102,23 @@ const timer = setInterval(() => {
 
       //# Scorro l'Array dei numeri dati dall'utente
       //# E controllo se sono uguali a quelli scelti casualmente prima
-      for (let i = 0; i < userNumber.length; i++) if (number.includes(userNumber[i])) score++;
+      for (let i = 0; i < userNumber.length; i++) {
+        if (number.includes(userNumber[i])) {
+          correctNumber = number[i];
+          score++;
+        }
+      }
+
+      //# Se hai fatto almeno un punto fai partire i coriandoli
+      if (score !== 0) frame();
 
       //# Stampo quanti punti ha ottenuto l'utente
       scoreElement.classList.remove("d-none");
       overflow.classList.remove("d-none");
       scoreElement.innerHTML = `
+      <div>I numeri che hai indovinato sono: 
+      <div>${correctNumber}</div>
+      </div>
       <span>Il tuo punteggio è di ${score}</span>
       <button type="button" class="btn btn-danger">Riprova</button>
       `;

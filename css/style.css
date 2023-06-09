@@ -63,21 +63,20 @@ body{
   border-radius: 20px;
   width: 900px;
   height: 500px;
-  line-height: 500px;
-  text-align: center;
   font-size: 2rem;
   font-weight: bold;
   animation: fade-out 0.4s linear;
   user-select: none;
+  text-align: center;
+  padding-top: 15px;
 
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 #score button{
   padding: 50px;
-  position: relative;
-  bottom: 125px;
 }
 
 .overflow{
