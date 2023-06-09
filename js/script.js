@@ -23,6 +23,10 @@ let correctNumber = "";
 let countDown = 1;
 countdownElement.innerText = countDown;
 
+//# Inserisco il placeholder negli input
+for (let i = 0; i < userNumberElement.length; i++) {
+  userNumberElement[i].placeholder = `Sono compresi tra ${min} e ${max}`;
+}
 //# Funzioni
 
 //? Funzione per il random
@@ -96,6 +100,7 @@ const timer = setInterval(() => {
       //# Recupero i valori degli Input dati dall'utente
       for (let i = 0; i < userNumberElement.length; i++) {
         userNumber.push(parseInt(userNumberElement[i].value));
+        userNumberElement[i].placeholder = `Sono compresi tra ${min} e ${max}`;
       }
 
       //# Scorro l'Array dei numeri dati dall'utente
