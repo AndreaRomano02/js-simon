@@ -1,35 +1,5 @@
 console.log("JS OK");
 
-//! Coriandoli effetto
-
-function frame() {
-  const end = Date.now() + 15 * 10;
-
-  // go Buckeyes!
-  const colors = ["#bb0000", "#ffffff"];
-  confetti({
-    particleCount: 2,
-    angle: 60,
-    spread: 55,
-    origin: { x: 0 },
-    colors: colors,
-  });
-
-  confetti({
-    particleCount: 2,
-    angle: 120,
-    spread: 55,
-    origin: { x: 1 },
-    colors: colors,
-  });
-
-  if (Date.now() < end) {
-    requestAnimationFrame(frame);
-  }
-}
-
-// ------------------------------
-
 //# Recupero gli elemtni dal DOM
 const countdownElement = document.getElementById("countdown");
 const gridElement = document.getElementById("number-grid");
@@ -57,6 +27,34 @@ countdownElement.innerText = countDown;
 
 //? Funzione per il random
 const random = (min, max) => (result = Math.floor(Math.random() * (max + 1 - min)) + min);
+
+//! Coriandoli effetto
+
+function frame() {
+  const end = Date.now() + 15 * 10;
+
+  // go Buckeyes!
+  const colors = ["#bb0000", "#ffffff"];
+  confetti({
+    particleCount: 2,
+    angle: 60,
+    spread: 55,
+    origin: { x: 0 },
+    colors: colors,
+  });
+
+  confetti({
+    particleCount: 2,
+    angle: 120,
+    spread: 55,
+    origin: { x: 1 },
+    colors: colors,
+  });
+
+  if (Date.now() < end) {
+    requestAnimationFrame(frame);
+  }
+}
 
 //# -----------------------------------------------
 //# LOGICA
