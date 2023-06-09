@@ -21,7 +21,7 @@ let score = 0;
 let correctNumber = [];
 
 //* Imposto il valore da cui deve partire il countDown (30s)
-let countDown = 1;
+let countDown = 30;
 countdownElement.innerText = countDown;
 
 //# Inserisco il placeholder negli input
